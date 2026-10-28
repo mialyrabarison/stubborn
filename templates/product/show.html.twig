@@ -1,0 +1,66 @@
+
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ product.name }} - STUBBORN{% endblock %}
+
+{% block body %}
+
+<main class="page-fiche-produit">
+
+    {# Grande image du sweatshirt à gauche #}
+    <div class="fiche-image">
+        <img
+            src="{{ asset('images/' ~ product.image) }}"
+            alt="Sweatshirt {{ product.name }}"
+            class="{{ product.name == 'Greyback' ? 'image-greyback' : '' }}"
+        >
+    </div>
+
+    {# Informations et choix de la taille à droite #}
+    <div class="fiche-details">
+
+        <section class="fiche-informations">
+            <h1>{{ product.name }}</h1>
+
+            <p class="fiche-prix">
+                {{ product.price|number_format(2, ',', ' ') }} €
+            </p>
+        </section>
+
+        <section class="fiche-commande">
+
+            {# Formulaire d'ajout du sweatshirt au panier #}
+            <form action="{{ path('app_cart_add', {'id': product.id}) }}" method="post">
+
+                {# Affichage permanent des cinq tailles du wireframe #}
+                <label for="taille-produit">Taille</label>
+
+                <select id="taille-produit" name="taille" size="5" required>
+                    <option value="XS">XS</option>
+                    <option value="S">S</option>
+                    <option value="M">M</option>
+                    <option value="L">L</option>
+                    <option value="XL">XL</option>
+                </select>
+
+                {# Protection du formulaire contre les requêtes non autorisées #}
+                <input
+                    type="hidden"
+                    name="_token"
+                    value="{{ csrf_token('cart_add_' ~ product.id) }}"
+                >
+
+                {# Envoi du sweatshirt et de sa taille vers le panier #}
+                <button type="submit" class="btn-ajouter-panier">
+                    AJOUTER AU PANIER
+                </button>
+
+            </form>
+
+        </section>
+
+    </div>
+
+</main>
+
+{% endblock %}

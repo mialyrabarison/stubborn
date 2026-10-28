@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Créer un compte | STUBBORN{% endblock %}
+
+{% block body %}
+
+    <section class="inscription">
+
+        <div class="cadre-inscription">
+
+            <h2>S'inscrire</h2>
+
+            {% for flash_error in app.flashes('verify_email_error') %}
+                <div class="alert alert-danger" role="alert">
+                    {{ flash_error }}
+                </div>
+            {% endfor %}
+
+            {{ form_errors(registrationForm) }}
+
+            {{ form_start(registrationForm) }}
+
+                {{ form_row(registrationForm.name, {
+                    label: "Nom d'utilisateur"
+                }) }}
+
+                {{ form_row(registrationForm.email, {
+                    label: 'Adresse e-mail'
+                }) }}
+
+                {{ form_row(registrationForm.deliveryAddress, {
+                    label: 'Adresse de livraison'
+                }) }}
+
+                {{ form_row(registrationForm.plainPassword) }}
+
+                {{ form_row(registrationForm.agreeTerms, {
+                    label: "J'accepte les conditions d'utilisation"
+                }) }}
+
+                <button type="submit" class="btn-inscription">
+                    Créer un compte
+                </button>
+
+            {{ form_end(registrationForm) }}
+
+            <hr>
+
+            <p>Déjà inscrit ?</p>
+
+            <a href="/login" class="btn-connexion">
+                Se connecter
+            </a>
+
+        </div>
+
+    </section>
+
+{% endblock %}

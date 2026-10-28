@@ -1,0 +1,111 @@
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Panier - STUBBORN{% endblock %}
+
+{% block body %}
+
+<main class="page-panier">
+
+    {# Liste des sweatshirts ajoutés au panier #}
+    <div class="liste-panier">
+
+        {% if articles is empty %}
+
+            {# Message affiché lorsque le panier est vide #}
+            <p class="panier-vide">Votre panier est vide.</p>
+
+        {% else %}
+
+            {# Affichage de chaque sweatshirt du panier #}
+            {% for article in articles %}
+
+                <div class="article-panier">
+
+                    {# Image du sweatshirt #}
+                    <div class="panier-image">
+                        <img
+                            src="{{ asset('images/' ~ article.product.image) }}"
+                            alt="Sweatshirt {{ article.product.name }}"
+                            class="{{ article.product.name == 'Greyback' ? 'image-greyback' : '' }}"
+                        >
+                    </div>
+
+                    {# Nom du sweatshirt #}
+                    <div class="panier-nom">
+                        {{ article.product.name }}
+                    </div>
+
+                    {# Prix du sweatshirt #}
+                    <div class="panier-prix">
+                        {{ article.product.price|number_format(2, ',', ' ') }} €
+                    </div>
+
+                    {# Taille sélectionnée #}
+                    <div class="panier-taille">
+                        {{ article.taille }}
+                    </div>
+
+                    {# Quantité commandée #}
+                    <div class="panier-quantite">
+                        Quantité : {{ article.quantite }}
+                    </div>
+
+                    
+                {# Formulaire permettant de retirer un sweatshirt du panier #}
+                <form action="{{ path('app_cart_remove', {'cle': article.cle}) }}" method="post" class="form-retirer-panier">
+
+                    {# Protection du formulaire contre les requêtes non autorisées #}
+                    <input type="hidden" name="_token" value="{{ csrf_token('cart_remove_' ~ article.cle) }}">
+
+                    {# Suppression du sweatshirt sélectionné #}
+                    <button type="submit" class="btn-retirer-panier">
+                        RETIRER DU PANIER
+                    </button>
+
+</form>
+
+
+                </div>
+
+            {% endfor %}
+
+        {% endif %}
+
+    </div>
+
+    {# Total et actions du panier #}
+    <div class="panier-bas">
+
+        {# Montant total de la commande #}
+        <div class="panier-total">
+            TOTAL : {{ total|number_format(2, ',', ' ') }} €
+        </div>
+
+        <div class="panier-actions">
+
+            
+        {# Formulaire permettant de finaliser la commande avec Stripe #}
+        <form action="{{ path('app_cart_checkout') }}" method="post" data-turbo="false">
+            {# Protection du paiement contre les requêtes non autorisées #}
+            <input type="hidden" name="_token" value="{{ csrf_token('cart_checkout') }}">
+
+            {# Bouton de paiement Stripe #}
+            <button type="submit" class="btn-finaliser" {% if articles is empty %}disabled{% endif %}>
+                FINALISER MA COMMANDE
+            </button>
+        </form>
+
+        {# Retour vers la boutique #}
+        <a href="{{ path('app_products') }}" class="btn-continuer">
+            CONTINUER MES ACHATS
+        </a>
+
+
+        </div>
+
+    </div>
+
+</main>
+
+{% endblock %}

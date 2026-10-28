@@ -1,0 +1,195 @@
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Back-Office - STUBBORN{% endblock %}
+
+{% block body %}
+
+<div class="admin-container">
+
+    {# AFFICHAGE DES MESSAGES DE CONFIRMATION OU D'ERREUR #}
+    {% for message in app.flashes('success') %}
+        <p class="admin-message-success">{{ message }}</strong></p>
+    {% endfor %}
+
+    {% for message in app.flashes('error') %}
+        <p class="admin-message-error">{{ message }}</p>
+    {% endfor %}
+
+    {# FORMULAIRE D'AJOUT D'UN SWEATSHIRT #}
+    <form method="post" enctype="multipart/form-data">
+
+        <input
+            type="hidden"
+            name="_token"
+            value="{{ csrf_token('admin_add_product') }}"
+        >
+
+        <div class="admin-product admin-ajout">
+
+            {# Emplacement de l'image du nouveau sweatshirt #}
+            <div class="admin-image-ajout">
+                <label for="image-produit">Choisir une image</label>
+                <input
+                    type="file"
+                    id="image-produit"
+                    name="image"
+                    accept="image/*"
+                >
+            </div>
+
+            <div>
+                <div class="admin-champs">
+
+                    <div class="admin-champ">
+                        <label>Nom</label>
+                        <input type="text" name="name">
+                    </div>
+
+                    <div class="admin-champ">
+                        <label>Prix</label>
+                        <input type="number" name="price" step="0.01" min="0">
+                    </div>
+
+                    {% for size in ['XS', 'S', 'M', 'L', 'XL'] %}
+                        <div class="admin-champ">
+                            <label>Stock {{ size }}</label>
+                            <input type="number" name="stock{{ size }}" min="0">
+                        </div>
+                    {% endfor %}
+
+                </div>
+
+                <div class="admin-actions">
+                    <button type="submit">AJOUTER</button>
+                </div>
+            </div>
+
+        </div>
+
+    </form>
+
+    {# LISTE DES SWEATSHIRTS EXISTANTS #}
+    {% for product in products %}
+
+        {# FORMULAIRE DE MODIFICATION D'UN SWEATSHIRT #}
+        <form
+            method="post"
+            action="{{ path('app_admin_product_edit', {id: product.id}) }}"
+            enctype="multipart/form-data"
+        >
+
+            {# Protection contre les modifications non autorisées #}
+            <input
+                type="hidden"
+                name="_token"
+                value="{{ csrf_token('admin_edit_product_' ~ product.id) }}"
+            >
+
+            <div class="admin-product">
+
+                <div>
+                    <img
+                        class="admin-image"
+                        src="{{ asset('images/' ~ product.image) }}"
+                        alt="{{ product.name }}"
+                    >
+
+                    {# Permettre de remplacer l'image du sweatshirt #}
+                    <input
+                        type="file"
+                        name="image"
+                        accept="image/jpeg,image/png,image/webp"
+                        aria-label="Modifier l'image de {{ product.name }}"
+                    >
+                </div>
+
+                <div>
+                    <div class="admin-champs">
+
+                        <div class="admin-champ">
+                            <label>Nom</label>
+                            <input
+                                type="text"
+                                name="name"
+                                value="{{ product.name }}"
+                            >
+                        </div>
+
+                        <div class="admin-champ">
+                            <label>Prix</label>
+                            <input
+                                type="number"
+                                name="price"
+                                step="0.01"
+                                min="0"
+                                value="{{ product.price }}"
+                            >
+                        </div>
+
+                        {% for size in ['XS', 'S', 'M', 'L', 'XL'] %}
+                            <div class="admin-champ">
+                                <label>Stock {{ size }}</label>
+                                <input
+                                    type="number"
+                                    name="stock{{ size }}"
+                                    min="0"
+                                    value="{{ attribute(product, 'stock' ~ size) }}"
+                                >
+                            </div>
+                        {% endfor %}
+
+                    </div>
+
+                    <div class="admin-actions">
+                        <label>
+                            <input
+                                type="checkbox"
+                                name="isFeatured"
+                                value="1"
+                                {% if product.featured %}checked{% endif %}
+                            >
+                            Mettre en avant
+                        </label>
+
+                        {# Bouton de suppression du sweatshirt #}
+                        <button
+                            type="submit"
+                            form="delete-product-{{ product.id }}"
+                            onclick="return confirm('Voulez-vous vraiment supprimer ce sweatshirt ? Cette action est définitive.')"
+                        >
+                            SUPPRIMER
+                        </button>
+
+                        {# Envoyer les modifications du sweatshirt #}
+                        <button type="submit">MODIFIER</button>
+                    </div>
+                </div>
+
+            </div>
+
+        </form>
+
+        {# FORMULAIRE INDÉPENDANT POUR SUPPRIMER UN SWEATSHIRT #}
+        <form
+            id="delete-product-{{ product.id }}"
+            method="post"
+            action="{{ path('app_admin_product_delete', {id: product.id}) }}"
+        >
+            {# Protection contre les suppressions non autorisées #}
+            <input
+                type="hidden"
+                name="_token"
+                value="{{ csrf_token('admin_delete_product_' ~ product.id) }}"
+            >
+        </form>
+
+    {% else %}
+
+        <p>Aucun sweatshirt enregistré dans la boutique.</p>
+
+    {% endfor %}
+
+</div>
+
+{% endblock %}

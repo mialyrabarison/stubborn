@@ -1,0 +1,87 @@
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Boutique - STUBBORN{% endblock %}
+
+{% block body %}
+
+<main class="page-boutique">
+
+    {# Filtre de prix à gauche selon le wireframe #}
+    <aside class="filtre-boutique">
+        <h2>Fourchette de prix</h2>
+
+        <form method="get" action="{{ path('app_products') }}">
+
+            {# Envoie automatiquement le choix au contrôleur #}
+            <select
+                name="prix"
+                aria-label="Fourchette de prix"
+                onchange="this.form.submit()"
+            >
+                <option value=""
+                    {{ (prixSelectionne|default('')) == '' ? 'selected' : '' }}>
+                    Tous les prix
+                </option>
+
+                <option value="10-29"
+                    {{ (prixSelectionne|default('')) == '10-29' ? 'selected' : '' }}>
+                    10 à 29 €
+                </option>
+
+                <option value="29-35"
+                    {{ (prixSelectionne|default('')) == '29-35' ? 'selected' : '' }}>
+                    29 à 35 €
+                </option>
+
+                <option value="35-50"
+                    {{ (prixSelectionne|default('')) == '35-50' ? 'selected' : '' }}>
+                    35 à 50 €
+                </option>
+            </select>
+
+        </form>
+    </aside>
+
+    {# Affichage des produits enregistrés dans MariaDB #}
+    <section class="catalogue-boutique">
+
+        {% for product in products %}
+
+            <article class="carte-boutique">
+
+                <img
+                    src="{{ asset('images/' ~ product.image) }}"
+                    alt="Sweatshirt {{ product.name }}"
+                >
+
+                <h2>{{ product.name }}</h2>
+
+                <div class="bas-carte-boutique">
+
+                    <p>
+                        {{ product.price|number_format(2, ',', ' ') }} €
+                    </p>
+
+                    <a
+                        href="{{ path('app_product_show', {id: product.id}) }}"
+                        class="btn-voir"
+                    >
+                        VOIR
+                    </a>
+
+                </div>
+
+            </article>
+
+        {% else %}
+
+            <p>Aucun sweatshirt dans cette fourchette de prix.</p>
+
+        {% endfor %}
+
+    </section>
+
+</main>
+
+{% endblock %}

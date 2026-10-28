@@ -1,3 +1,965 @@
+
 body {
-    background-color: skyblue;
+    background-color: white;
+    margin: 0;
+} /* Fond blanc */
+
+/* EN-TÊTE */
+header {
+    display: flex; /* Permet de mettre les éléments sur la même ligne : le logo et le menu */
+    justify-content: space-between; /* Permet de mettre le logo à gauche et le menu à droite */
+    align-items: flex-start; /* Aligne le menu en haut, au niveau du logo */
+    padding: 20px 40px; /* Rajoute une marge intérieure */
+    border-bottom: 1px solid black; /* Ligne séparatrice sous l'en-tête */
+} /* Stubborn à gauche et menu à droite */
+
+/* Taille du logo Stubborn dans l'en-tête */
+header img {
+    width: 150px;
+    height: auto;
+}
+
+/* Positionnement du logo et du slogan */
+.identite {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+/* Mise en forme du slogan */
+/* Slogan sous le logo, sans encadrement */
+.slogan {
+    margin: 5px 0 0;
+    font-size: 22px;
+    font-weight: bold;
+    font-style: italic;
+    border: none;
+    padding: 0;
+    transform: translateX(35px); /* Décale le slogan vers la droite */
+}
+
+/* MENU DE NAVIGATION */
+nav {
+    display: flex;
+    gap: 30px;
+} /* Espace entre les menus */
+
+nav a {
+    color: black;
+    text-decoration: none;
+} /* Rendre noir le menu sans souligner les liens */
+
+/* Souligner uniquement le menu de la page active */
+nav a.actif {
+    text-decoration: underline;
+}
+
+/* PRÉSENTATION DE STUBBORN */
+.presentation {
+    text-align: left;
+    padding: 15px 40px;
+    border: none; /* Supprime le cadre autour de la présentation */
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+/* SECTION DES PRODUITS */
+.produits {
+    text-align: center;
+}
+
+.produit {
+    display: inline-block;
+    margin: 20px 35px; /* 20px en haut et en bas, 35px à gauche et à droite */
+    vertical-align: top;
+    border: 1px solid black;
+    padding: 15px;
+    text-align: left;
+}
+
+.produit img {
+    width: 250px;
+    height: 280px;
+    object-fit: contain;
+}
+
+/* PIED DE PAGE : INFORMATIONS DE LA SOCIÉTÉ */
+footer {
+    border: 1px solid black; /* Cadre autour des informations */
+    padding: 20px 40px; /* Espace entre le texte et le cadre */
+    margin: 40px; /* Espace autour du pied de page */
+    text-align: left;
+}
+
+footer h3 {
+    margin-top: 0;
+}
+
+footer p {
+    margin: 8px 0;
+}
+
+/* PAGE D'INSCRIPTION STUBBORN */
+
+/* Centre le formulaire sur la page */
+.inscription {
+    display: flex;
+    justify-content: center;
+    padding: 45px 20px;
+}
+
+/* Cadre du formulaire */
+.cadre-inscription {
+    width: 300px;
+    border: 1px solid #999;
+    padding: 15px;
+    box-sizing: border-box;
+}
+
+/* Titre du formulaire */
+.cadre-inscription h2 {
+    font-size: 16px;
+    font-weight: normal;
+    margin-top: 0;
+    border-bottom: 2px solid #dceeff;
+    padding-bottom: 10px;
+}
+
+/* Place les étiquettes au-dessus des champs */
+.cadre-inscription form label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* Espacement entre les champs */
+.cadre-inscription form > div {
+    margin-bottom: 15px;
+}
+
+/* Taille des champs */
+.cadre-inscription input[type="text"],
+.cadre-inscription input[type="email"],
+.cadre-inscription input[type="password"] {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 7px;
+}
+
+/* Boutons bleus comme dans la maquette */
+.btn-inscription,
+.btn-connexion {
+    display: inline-block;
+    background-color: #64b5f6;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 12px;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Séparation avant le lien de connexion */
+.cadre-inscription hr {
+    border: none;
+    border-top: 2px solid #dceeff;
+    margin-top: 20px;
+}
+
+/* PAGE DE CONNEXION STUBBORN */
+
+/* Centre le formulaire et crée un cadre étroit comme sur la maquette */
+.formulaire-connexion {
+    width: 200px;
+    max-width: calc(100% - 20px);
+    margin: 130px auto;
+    padding: 10px;
+    border: 1px solid #999;
+    border-radius: 0;
+    box-sizing: border-box;
+}
+
+/* Titre du formulaire de connexion */
+.formulaire-connexion h1 {
+    font-size: 13px;
+    font-weight: normal;
+    margin: 0 0 10px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #dceeff;
+}
+
+/* Place les étiquettes au-dessus des champs */
+.formulaire-connexion label {
+    display: block;
+    font-size: 12px;
+    margin-top: 10px;
+    margin-bottom: 4px;
+}
+
+/* Taille des champs de connexion */
+.formulaire-connexion input[type="email"],
+.formulaire-connexion input[type="password"] {
+    display: block;
+    width: 150px;
+    max-width: 100%;
+    padding: 5px;
+    box-sizing: border-box;
+    font-size: 12px;
+}
+
+/* Bouton bleu de connexion */
+.formulaire-connexion button {
+    display: inline-block;
+    background-color: #64b5f6;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 7px 10px;
+    font-weight: bold;
+    cursor: pointer;
+    margin: 10px 0 0 10px;
+}
+
+/* Liens du formulaire de connexion */
+.formulaire-connexion a {
+    color: #8080ff;
+    font-size: 12px;
+}
+
+/* Ligne de séparation dans le formulaire */
+.formulaire-connexion hr {
+    border: none;
+    border-top: 2px solid #dceeff;
+    margin: 10px 0;
+}
+
+/* Message d'erreur de connexion */
+.formulaire-connexion .alert-danger {
+    color: #b00020;
+    font-size: 12px;
+    margin-bottom: 10px;
+}
+
+/* Message de confirmation après inscription */
+.message-success {
+    background-color: #e8f5e9;
+    color: #256029;
+    border: 1px solid #81c784;
+    padding: 12px;
+    margin: 20px 40px;
+    text-align: center;
+}
+
+/* Boutons VOIR sur l'accueil du client connecté */
+.btn-voir {
+    display: block;
+    background-color: #64b5f6;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 20px;
+    margin-top: 10px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Aligner le prix à gauche et le bouton VOIR à droite */
+/* Aligner le prix à gauche et le bouton VOIR à droite */
+.bas-produit {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    flex-wrap: nowrap;
+}
+
+/* Prix du sweatshirt */
+.bas-produit p {
+    margin: 0;
+    white-space: nowrap;
+}
+
+/* Bouton VOIR à droite du prix */
+.bas-produit .btn-voir {
+    display: inline-block;
+    margin: 0;
+    flex-shrink: 0;
+}
+
+/* =========================================
+   PAGE BOUTIQUE STUBBORN - WIREFRAME
+   ========================================= */
+
+/* Filtre à gauche et catalogue à droite */
+.page-boutique {
+    display: grid;
+    grid-template-columns: 220px minmax(0, 1fr);
+    gap: 30px;
+    max-width: 1250px;
+    margin: 40px auto 60px;
+    padding: 0 25px;
+    align-items: start;
+}
+
+/* Zone du filtre de prix */
+.filtre-boutique {
+    padding-top: 15px;
+}
+
+.filtre-boutique h2 {
+    font-size: 17px;
+    font-weight: normal;
+    margin: 0 0 15px;
+}
+
+.filtre-boutique select {
+    width: 100%;
+    padding: 10px;
+    background-color: white;
+    border: 1px solid black;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+/* Grille des sweatshirts */
+.catalogue-boutique {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 30px 25px;
+    align-items: start;
+}
+
+/* Première ligne : deux cartes à droite */
+.catalogue-boutique .carte-boutique:nth-child(1) {
+    grid-column: 2;
+}
+
+.catalogue-boutique .carte-boutique:nth-child(2) {
+    grid-column: 3;
+}
+
+/* Encadrement de chaque sweatshirt */
+.carte-boutique {
+    border: 1px solid black;
+    background-color: white;
+    padding: 15px;
+    min-width: 0;
+    box-sizing: border-box;
+}
+
+/* Image du sweatshirt */
+.carte-boutique img {
+    display: block;
+    width: 100%;
+    height: 260px;
+    object-fit: contain;
+}
+
+/* Nom du sweatshirt */
+.carte-boutique h2 {
+    font-size: 17px;
+    font-weight: normal;
+    margin: 15px 0;
+}
+
+/* Prix à gauche et bouton VOIR à droite */
+.bas-carte-boutique {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+.bas-carte-boutique p {
+    margin: 0;
+    font-size: 16px;
+    white-space: nowrap;
+}
+
+/* Bouton VOIR de la Boutique */
+.bas-carte-boutique .btn-voir {
+    display: inline-block;
+    margin: 0;
+    padding: 8px 18px;
+    background-color: #64b5f6;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+/* Adaptation aux écrans plus petits */
+@media (max-width: 950px) {
+    .page-boutique {
+        grid-template-columns: 1fr;
+    }
+
+    .catalogue-boutique {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .catalogue-boutique .carte-boutique:nth-child(1),
+    .catalogue-boutique .carte-boutique:nth-child(2) {
+        grid-column: auto;
+    }
+}
+
+@media (max-width: 600px) {
+    .catalogue-boutique {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Redresser uniquement l'image Greyback */
+.carte-boutique img[src*="Greyback"] {
+    transform: rotate(90deg);
+}
+
+
+/* =========================================
+   7.5 - FICHE INDIVIDUELLE DU SWEATSHIRT
+   ========================================= */
+
+/* Grand cadre de la fiche selon le wireframe */
+.page-fiche-produit {
+    display: grid;
+    grid-template-columns: 52% 48%;
+    align-items: start;
+    max-width: 1100px;
+    min-height: 490px;
+    margin: 45px auto 70px;
+    padding: 20px 30px;
+    border: 1px solid black;
+    box-sizing: border-box;
+}
+
+/* Grande image à gauche */
+.fiche-image {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.fiche-image img {
+    display: block;
+    width: 100%;
+    max-width: 430px;
+    height: 430px;
+    object-fit: contain;
+}
+
+/* Redresser uniquement Greyback */
+.fiche-image img.image-greyback {
+    transform: rotate(90deg);
+}
+
+/* Nom, prix et tailles à droite de l'image */
+.fiche-details {
+    display: grid;
+    grid-template-columns: 80px 190px;
+    column-gap: 20px;
+    align-items: start;
+    padding-top: 20px;
+}
+
+/* Nom et prix */
+.fiche-informations {
+    padding: 0;
+}
+
+.fiche-informations h1 {
+    font-size: 16px;
+    font-weight: normal;
+    margin: 20px 0 25px;
+}
+
+.fiche-prix {
+    font-size: 16px;
+    margin: 0;
+}
+
+/* Liste des cinq tailles visibles en permanence */
+.fiche-commande {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    padding: 0;
+}
+
+.fiche-commande label {
+    width: 120px;
+    padding: 6px 0;
+    border: 1px solid #999;
+    border-bottom: none;
+    text-align: center;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+.fiche-commande select {
+    width: 120px;
+    height: 125px;
+    padding: 0;
+    border: 1px solid #999;
+    border-radius: 0;
+    background-color: white;
+    font-size: 16px;
+}
+
+.fiche-commande select option {
+    padding: 2px 6px;
+}
+
+/* Bouton sous les tailles, comme sur le wireframe */
+.btn-ajouter-panier {
+    width: 190px;
+    margin-top: 20px;
+    padding: 12px 8px;
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+    border-radius: 5px;
+    font-size: 12px;
+    font-weight: normal;
+    cursor: pointer;
+}
+
+/* Adaptation aux écrans plus petits */
+@media (max-width: 850px) {
+    .page-fiche-produit {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        margin: 25px 15px;
+        padding: 20px;
+    }
+
+    .fiche-image {
+        justify-content: center;
+    }
+
+    .fiche-image img {
+        height: 300px;
+    }
+
+    .fiche-details {
+        grid-template-columns: 100px 190px;
+        justify-content: center;
+        padding-top: 0;
+    }
+}
+
+
+/* =========================================
+   7.6 - PAGE PANIER
+   ========================================= */
+
+/* Conteneur principal de la page Panier */
+.page-panier {
+    width: 100%;
+    max-width: 900px;
+    margin: 50px auto 80px;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+/* Liste des sweatshirts ajoutés au panier */
+.liste-panier {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Rectangle contenant un sweatshirt */
+.article-panier {
+    display: grid;
+    grid-template-columns: 190px 1fr 110px 65px;
+    grid-template-rows: auto 1fr auto;
+    column-gap: 20px;
+    align-items: start;
+    min-height: 180px;
+    padding: 15px 20px;
+    border: 1px solid black;
+    box-sizing: border-box;
+}
+
+/* Emplacement de l'image */
+.panier-image {
+    grid-column: 1;
+    grid-row: 1 / 4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 180px;
+    height: 160px;
+}
+
+/* Image du sweatshirt */
+.panier-image img {
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+/* Rotation spécifique de l'image Greyback */
+.panier-image img.image-greyback {
+    transform: rotate(90deg) scale(0.85);
+}
+
+/* Nom du sweatshirt */
+.panier-nom {
+    grid-column: 2;
+    grid-row: 1;
+    padding-top: 15px;
+    font-size: 16px;
+}
+
+/* Prix du sweatshirt */
+.panier-prix {
+    grid-column: 3;
+    grid-row: 1;
+    padding-top: 15px;
+    font-size: 16px;
+    white-space: nowrap;
+}
+
+/* Taille sélectionnée */
+.panier-taille {
+    grid-column: 4;
+    grid-row: 1;
+    padding-top: 15px;
+    font-size: 16px;
+    text-align: center;
+}
+
+/* Quantité commandée */
+.panier-quantite {
+    grid-column: 2;
+    grid-row: 2;
+    align-self: center;
+    font-size: 14px;
+}
+
+/* Formulaire de suppression */
+.form-retirer-panier {
+    grid-column: 3 / 5;
+    grid-row: 3;
+    justify-self: end;
+    margin: 0;
+}
+
+/* Bouton Retirer du panier */
+.btn-retirer-panier {
+    padding: 10px 15px;
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+    border-radius: 4px;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.btn-retirer-panier:hover {
+    background-color: #f2f2f2;
+}
+
+/* Message lorsque le panier est vide */
+.panier-vide {
+    padding: 40px 20px;
+    text-align: center;
+    font-size: 16px;
+}
+
+/* Zone inférieure : total et boutons */
+/* Zone inférieure : total et boutons */
+.panier-bas {
+    display: grid;
+    grid-template-columns: 170px 190px;
+    justify-content: end;
+    align-items: start;
+    column-gap: 10px;
+    margin-top: 18px;
+    padding-right: 20px;
+}
+
+/* Rectangle du montant total */
+.panier-total {
+    width: 170px;
+    min-width: 0;
+    padding: 12px 10px;
+    border: 1px solid black;
+    font-size: 14px;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+/* Boutons de validation et de retour */
+.panier-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+    width: 190px;
+}
+
+/* Bouton Finaliser ma commande */
+.btn-finaliser {
+    display: block;
+    width: 100%;
+    padding: 16px 10px;
+    background-color: #f4d9d9;
+    color: black;
+    border: 1px solid black;
+    border-radius: 4px;
+    font-size: 12px;
+    text-align: center;
+    cursor: pointer;
+}
+
+/* Le bouton sera activé lors de l'intégration de Stripe */
+.btn-finaliser:disabled {
+    opacity: 1;
+    cursor: not-allowed;
+}
+
+/* Bouton Continuer mes achats */
+.btn-continuer {
+    display: block;
+    width: 100%;
+    padding: 16px 10px;
+    background-color: #dcebd7;
+    color: black;
+    border: 1px solid black;
+    border-radius: 4px;
+    font-size: 12px;
+    text-align: center;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+
+.btn-continuer:hover {
+    background-color: #cde2c6;
+}
+
+/* Adaptation aux petits écrans */
+@media (max-width: 700px) {
+
+    .page-panier {
+        margin-top: 25px;
+    }
+
+    .article-panier {
+        grid-template-columns: 110px 1fr 75px;
+        grid-template-rows: auto auto auto auto;
+        column-gap: 12px;
+        row-gap: 10px;
+        padding: 15px;
+    }
+
+    .panier-image {
+        grid-column: 1;
+        grid-row: 1 / 5;
+        width: 105px;
+        height: 125px;
+    }
+
+    .panier-nom {
+        grid-column: 2;
+        grid-row: 1;
+        padding-top: 0;
+    }
+
+    .panier-prix {
+        grid-column: 2;
+        grid-row: 2;
+        padding-top: 0;
+    }
+
+    .panier-taille {
+        grid-column: 3;
+        grid-row: 1;
+        padding-top: 0;
+    }
+
+    .panier-quantite {
+        grid-column: 2 / 4;
+        grid-row: 3;
+    }
+
+    .form-retirer-panier {
+        grid-column: 2 / 4;
+        grid-row: 4;
+    }
+
+    .panier-bas {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .panier-total {
+        min-width: 0;
+    }
+
+    .panier-actions {
+        width: 100%;
+    }
+}
+
+
+/* =========================================
+   12 - BACK-OFFICE STUBBORN - WIREFRAME
+   ========================================= */
+
+/* Conteneur principal du back-office */
+.admin-container {
+    max-width: 1100px;
+    margin: 55px auto;
+    padding: 0 20px;
+}
+
+/* Encadrés des sweatshirts */
+.admin-product {
+    display: grid;
+    grid-template-columns: 120px minmax(0, 1fr);
+    gap: 30px;
+    align-items: center;
+    border: 1px solid black;
+    padding: 15px 10px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+}
+
+/* Formulaire d'ajout avec fond rose */
+.admin-product.admin-ajout {
+    background-color: #f4cece;
+}
+
+/* Image à gauche de chaque encadré */
+.admin-image {
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
+}
+
+/* Champs alignés horizontalement */
+.admin-champs {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    gap: 20px;
+    align-items: end;
+}
+
+/* Étiquettes au-dessus des champs */
+.admin-champ label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 12px;
+}
+
+/* Champs de saisie */
+.admin-champ input {
+    width: 100%;
+    height: 27px;
+    border: 1px solid black;
+    padding: 4px;
+    box-sizing: border-box;
+}
+
+/* Boutons à droite, sous les champs */
+.admin-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 25px;
+}
+
+/* Boutons du back-office */
+.admin-actions button {
+    width: 190px;
+    padding: 12px;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Adaptation aux écrans plus petits */
+@media (max-width: 900px) {
+    .admin-champs {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .admin-product {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* =========================================
+   12.35 - TITRE DU BACK-OFFICE
+   ========================================= */
+
+/* Positionner le titre au centre de l'en-tête */
+header:has(.titre-back-office) {
+    position: relative;
+}
+
+/* Encadrer et centrer le titre comme sur le wireframe */
+.titre-back-office {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 30px;
+    margin: 0;
+    padding: 8px 15px;
+    border: 1px solid black;
+    font-size: 28px;
+    font-weight: normal;
+}
+
+/* =========================================
+   12.37 - IMAGE DU FORMULAIRE D'AJOUT
+   ========================================= */
+
+/* Carré réservé à l'image du nouveau sweatshirt */
+.admin-image-ajout {
+    width: 120px;
+    height: 120px;
+    border: 1px solid black;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 8px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+/* Texte à l'intérieur du carré */
+.admin-image-ajout label {
+    font-size: 12px;
+}
+
+/* Sélection de l'image */
+.admin-image-ajout input[type="file"] {
+    width: 100%;
+    font-size: 10px;
+}
+
+/* Messages de confirmation du Back-Office */
+.admin-message-success {
+    font-weight: bold;
+    color: #176534;
+    background-color: #e7f5e9;
+    border: 1px solid #86c99a;
+    padding: 12px 16px;
+    margin-bottom: 20px;
+    border-radius: 5px;
 }

@@ -1,0 +1,115 @@
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Stubborn - Boutique de sweatshirts{% endblock %}
+{# avant le nom est {% block title %}Hello HomeController!{% endblock %} #}
+{# c'est le nom qui affiche dans longget quand on tape le lien du site . c'est aussi la page d acceuil #}
+
+{% block body %}
+
+    {# Afficher les messages de confirmation #}
+    {% for message in app.flashes('success') %}
+        <p class="message-success">{{ message }}</p>
+    {% endfor %}
+
+    {% if app.user %}
+
+        {# PAGE D'ACCUEIL DU CLIENT CONNECTÉ #}
+
+        {# Présentation de la marque Stubborn #}
+        <section class="presentation">
+            <h2>Notre marque</h2>
+
+            <p>
+                Stubborn est une marque de vêtements spécialisée dans les
+                sweatshirts. Elle propose différents modèles pour permettre
+                à chacun d'affirmer son style.
+            </p>
+        </section>
+
+        <section class="produits">
+            <h2>Nos sweatshirts à découvrir</h2>
+
+            {# Afficher les sweatshirts mis en avant dans le Back-Office #}
+            {% for product in featuredProducts %}
+
+                <div class="produit">
+                    <img
+                        src="{{ asset('images/' ~ product.image) }}"
+                        alt="Sweatshirt {{ product.name }}"
+                    >
+
+                    <h3>{{ product.name }}</h3>
+
+                    <div class="bas-produit">
+                        <p>
+                            Prix : {{ product.price|number_format(2, ',', ' ') }} €
+                        </p>
+
+                        {# Accéder à la fiche du sweatshirt sélectionné #}
+                        <a
+                            href="{{ path('app_product_show', {'id': product.id}) }}"
+                            class="btn-voir"
+                        >
+                            VOIR
+                        </a>
+                    </div>
+                </div>
+
+            {% else %}
+
+                <p>Aucun sweatshirt mis en avant pour le moment.</p>
+
+            {% endfor %}
+
+        </section>
+
+    {% else %}
+
+        {# PAGE D'ACCUEIL DU VISITEUR NON CONNECTÉ #}
+
+        <section class="presentation">
+
+            {# Cette section contient la présentation de la société Stubborn. #}
+            <h2>Notre marque</h2>
+
+            <p>
+                Stubborn est une marque de vêtements spécialisée dans les
+                sweatshirts. Elle propose différents modèles pour permettre
+                à chacun d'affirmer son style.
+            </p>
+
+        </section>
+
+        <section class="produits">
+            <h2>Nos sweatshirts à découvrir</h2>
+
+            {# Afficher les sweatshirts mis en avant dans le Back-Office #}
+            {% for product in featuredProducts %}
+
+                <div class="produit">
+                    <img
+                        src="{{ asset('images/' ~ product.image) }}"
+                        alt="Sweatshirt {{ product.name }}"
+                    >
+
+                    <h3>{{ product.name }}</h3>
+
+                    <p>
+                        Prix : {{ product.price|number_format(2, ',', ' ') }} €
+                    </p>
+                </div>
+
+            {% else %}
+
+                <p>Aucun sweatshirt mis en avant pour le moment.</p>
+
+            {% endfor %}
+
+        </section>
+
+    {% endif %}
+
+{% endblock %}
+
+{# c'est dans ce fichier aussi quon peut mettre le contenu html exemple titre, paragraphe, texte de la page d'accueil #}
