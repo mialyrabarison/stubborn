@@ -32,9 +32,13 @@
             {# Formulaire d'ajout du sweatshirt au panier #}
             <form action="{{ path('app_cart_add', {'id': product.id}) }}" method="post">
 
-                {# Affichage permanent des cinq tailles du wireframe #}
+            {# Affichage permanent des cinq tailles du wireframe #}
+            <div class="bloc-tailles">
+
+                {# Titre placé au-dessus de la liste des tailles #}
                 <label for="taille-produit">Taille</label>
 
+                {# Choix de la taille du sweatshirt #}
                 <select id="taille-produit" name="taille" size="5" required>
                     <option value="XS">XS</option>
                     <option value="S">S</option>
@@ -42,6 +46,8 @@
                     <option value="L">L</option>
                     <option value="XL">XL</option>
                 </select>
+
+            </div>
 
                 {# Protection du formulaire contre les requêtes non autorisées #}
                 <input

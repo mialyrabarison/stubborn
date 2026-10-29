@@ -461,7 +461,7 @@ footer p {
 /* Nom, prix et tailles à droite de l'image */
 .fiche-details {
     display: grid;
-    grid-template-columns: 80px 190px;
+    grid-template-columns: 150px 190px;
     column-gap: 20px;
     align-items: start;
     padding-top: 20px;
@@ -490,6 +490,13 @@ footer p {
     align-items: flex-start;
     gap: 0;
     padding: 0;
+}
+
+/* Placer Taille au-dessus des cinq tailles */
+.bloc-tailles {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
 
 .fiche-commande label {
@@ -578,7 +585,7 @@ footer p {
 /* Rectangle contenant un sweatshirt */
 .article-panier {
     display: grid;
-    grid-template-columns: 190px 1fr 110px 65px;
+   grid-template-columns: 190px 1fr 150px 85px;
     grid-template-rows: auto 1fr auto;
     column-gap: 20px;
     align-items: start;
@@ -715,7 +722,7 @@ footer p {
     padding: 16px 10px;
     background-color: #f4d9d9;
     color: black;
-    border: 1px solid black;
+   border: 1px solid #c87878;
     border-radius: 4px;
     font-size: 12px;
     text-align: center;
@@ -735,7 +742,7 @@ footer p {
     padding: 16px 10px;
     background-color: #dcebd7;
     color: black;
-    border: 1px solid black;
+    border: 1px solid #6eaa69;
     border-radius: 4px;
     font-size: 12px;
     text-align: center;
